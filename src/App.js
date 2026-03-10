@@ -7,20 +7,39 @@ export default function Giftcard3DRevealPage() {
 
   const params = new URLSearchParams(window.location.search);
 
+  const packType = params.get("packType") || "gaming";
+
+  const packs = {
+    gaming: {
+      pack: "Gaming Pack",
+      items: ["PC 3 цаг", "2 Beer"],
+    },
+    billiard: {
+      pack: "Billiard Pack",
+      items: ["Billiard 2 цаг", "4 Beer"],
+    },
+    gergaming: {
+      pack: "Ger Gaming Pack",
+      items: ["PC 2 цаг", "Billiard 2 цаг", "6 Beer"],
+    },
+    gg: {
+      pack: "GG Pack",
+      items: ["PC 3 цаг", "2 Soft Drink"],
+    },
+  };
+
+  const selectedPack = packs[packType];
+
   const gift = {
-    from: params.get("from") || "Таны хайртай хүнээс ❤️",
+    from: params.get("from") || "",
     to: params.get("to") || "Чамд зориулсан",
     pack: params.get("pack") || "BRO NIGHT PACK",
     message:
       params.get("msg") ||
       "Цэргийн баяраар чамд хөгжилтэй, тухтай нэг орой бэлэглэж байна. Ger Gaming Lounge-д гоё өнгөрүүлээрэй.",
     code: params.get("code") || "GER18-001",
-    valid: params.get("valid") || "2026.03.18 – 2026.03.25",
-    items: [
-      params.get("item1") || "2 цаг Gaming",
-      params.get("item2") || "1 цаг Биллиард",
-      params.get("item3") || "2 Beer",
-    ],
+    valid: params.get("valid") || "2026.03.18 – 2026.03.28",
+    items: selectedPack.items,
   };
 
   return (
@@ -59,18 +78,14 @@ export default function Giftcard3DRevealPage() {
                 </div>
 
                 <div className="items-list">
-                  <div className="item-row">
-                    <Gamepad2 size={16} className="item-icon" />
-                    <span>{gift.items[0]}</span>
-                  </div>
-                  <div className="item-row">
-                    <CircleDot size={16} className="item-icon" />
-                    <span>{gift.items[1]}</span>
-                  </div>
-                  <div className="item-row">
-                    <Beer size={16} className="item-icon" />
-                    <span>{gift.items[2]}</span>
-                  </div>
+                  {gift.items.map((item, index) => (
+                    <div className="item-row" key={index}>
+                      {index === 0 && <Gamepad2 size={16} className="item-icon" />}
+                      {index === 1 && <CircleDot size={16} className="item-icon" />}
+                      {index === 2 && <Beer size={16} className="item-icon" />}
+                      <span>{item}</span>
+                    </div>
+                  ))}
                 </div>
 
                 <div className="card-footer">
@@ -95,7 +110,7 @@ export default function Giftcard3DRevealPage() {
         <div className="right-panel">
           <div className="from-badge">
             <Heart size={16} />
-            <span>From wife / girlfriend</span>
+            <span>{gift.from}</span>
           </div>
 
           <h1 className="receiver-title">{gift.to}</h1>
@@ -108,15 +123,7 @@ export default function Giftcard3DRevealPage() {
 
           <div className="info-grid">
             <div className="info-card">
-              Энэ линк нь бэлгийн карт харуулах зориулалттай. Хүлээн авагч энэ
-              хуудсыг нээгээд картаа харж, кодоо үзүүлэн ашиглана.
-            </div>
-
-            <div className="info-card">
-              Та зөвхөн <span className="highlight">нэр</span>,{" "}
-              <span className="highlight">мессеж</span>,{" "}
-              <span className="highlight">код</span>,{" "}
-              <span className="highlight">pack</span>-аа линкээр сольж болно.
+              <span className="highlight">Хаяг:</span> Баянбүрд, Computer mall -н замын эсрэг талд Гэрэл төв, 3 давхарт
             </div>
           </div>
         </div>
