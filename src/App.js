@@ -13,7 +13,7 @@ export default function Giftcard3DRevealPage() {
   const packs = {
     gaming: {
       pack: "Gaming Pack",
-      items: ["PC 3 цаг", "2 Beer"],
+      items: ["PC 3 цаг", "1 Energy drink, 1 Soft Drink"],
     },
     billiard: {
       pack: "Billiard Pack",
@@ -22,10 +22,6 @@ export default function Giftcard3DRevealPage() {
     gergaming: {
       pack: "Ger Gaming Pack",
       items: ["PC 2 цаг", "Billiard 2 цаг", "6 Beer"],
-    },
-    gg: {
-      pack: "GG Pack",
-      items: ["PC 3 цаг", "2 Soft Drink"],
     },
   };
 
